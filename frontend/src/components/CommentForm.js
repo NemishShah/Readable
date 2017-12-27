@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { newComment, editComment, getComment } from '../actions/comments';
 import { FormGroup, FormControl, ControlLabel, Button, Grid, Row, Col } from 'react-bootstrap';
 import uuidv4 from 'uuid/v4';
+import { If, Then, Else } from 'react-if';
 
 class CommentForm extends Component {
   state = {
@@ -66,9 +67,9 @@ class CommentForm extends Component {
   render() {
     return (
       <div>
-        {this.state.id === undefined ? (
-          <h1>404 - Data not found</h1>
-        ) : (
+        <If condition={this.state.id === undefined}>
+          <Then><h1>404 - Data not found</h1></Then>
+          <Else>
             <form>
               <Grid>
                 <Row className='show-grid'>
@@ -112,17 +113,18 @@ class CommentForm extends Component {
                 </Row>
               </Grid>
             </form>
-          )}
+          </Else>
+        </If>
       </div>
     )
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  newComment: (comment) => dispatch(newComment(comment)),
-  editComment: (comment) => dispatch(editComment(comment)),
-  getComment: (id) => dispatch(getComment(id))
-});
+const mapDispatchToProps = {
+  newComment,
+  editComment,
+  getComment
+};
 
 export default withRouter(
   connect(

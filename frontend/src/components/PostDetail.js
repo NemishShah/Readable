@@ -97,10 +97,10 @@ const mapStateToProps = (state) => ({
 });
 
 
-const mapDispatchToProps = dispatch => ({
-  getPostsForCategory : (category) => dispatch(getPostsForCategory(category)),
-  getCommentsByPostId : (postId) => dispatch(getCommentsByPostId(postId)) 
-});
+const mapDispatchToProps ={
+  getPostsForCategory,
+  getCommentsByPostId
+};
 
 export default withRouter(
   connect(

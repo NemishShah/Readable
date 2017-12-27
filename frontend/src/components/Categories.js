@@ -83,15 +83,9 @@ const mapStateToProps = (state) => ({
   categories: state.categories
 });
 
-const mapDispatchToProps = dispatch => ({
-  getAllCategories: () => dispatch(getAllCategories()),
-  getAllPosts: () => dispatch(getAllPosts()),
-  getPostsForCategory: (category) => dispatch(getPostsForCategory(category))
-});
-
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    {getAllCategories, getAllPosts,getPostsForCategory} //learning: shorthnad mapDispatchToProps
   )(Categories)
 )

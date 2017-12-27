@@ -5,6 +5,7 @@ import { getAllCategories } from "../actions/categories";
 import { newPost, editPost, getPostById } from '../actions/posts';
 import { FormGroup, FormControl, ControlLabel, Button, Grid, Row, Col } from 'react-bootstrap';
 import uuidv4 from 'uuid/v4';
+import { If, Then, Else } from 'react-if';
 
 class PostForm extends Component {
   state = {
@@ -55,7 +56,7 @@ class PostForm extends Component {
     else {
       this.props.newPost(this.state);
     }
-    this.props.history.push('/'+ this.state.category);
+    this.props.history.push('/' + this.state.category);
   }
 
   render() {
@@ -66,9 +67,9 @@ class PostForm extends Component {
 
     return (
       <div>
-        {this.state.id === undefined ? (
-          <h1>404 - Data not found</h1>
-        ) : (
+        <If condition={this.state.id === undefined}>
+          <Then><h1>404 - Data not found</h1></Then>
+          <Else>
             <form>
               <Grid>
                 <Row className='show-grid'>
@@ -132,7 +133,8 @@ class PostForm extends Component {
                 </Row>
               </Grid>
             </form>
-          )}
+          </Else>
+        </If>
       </div>
     )
   }
@@ -142,12 +144,12 @@ const mapStateToProps = (state) => ({
   categories: state.categories
 });
 
-const mapDispatchToProps = dispatch => ({
-  getAllCategories: () => dispatch(getAllCategories()),
-  newPost: (post) => dispatch(newPost(post)),
-  editPost: (post) => dispatch(editPost(post)),
-  getPostById: (id) => dispatch(getPostById(id))
-});
+const mapDispatchToProps = {
+  getAllCategories,
+  newPost,
+  editPost,
+  getPostById
+};
 
 export default withRouter(
   connect(

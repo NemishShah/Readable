@@ -67,10 +67,10 @@ const mapStateToProps = (state) => ({
   comments: state.comments
 });
 
-const mapDispatchToProps = dispatch => ({
-  deleteCommentById: (id) => dispatch(deleteCommentById(id)),
-  voteCommentById: (id, option) => dispatch(voteCommentById(id, option))
-});
+const mapDispatchToProps = {
+  deleteCommentById,
+  voteCommentById
+};
 
 export default withRouter(
   connect(

@@ -74,10 +74,10 @@ class ViewPost extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  deletePostById: (id) => dispatch(deletePostById(id)),
-  votePostById: (id, option) => dispatch(votePostById(id, option))
-});
+const mapDispatchToProps = {
+  deletePostById,
+  votePostById
+};
 
 export default withRouter(
   connect(

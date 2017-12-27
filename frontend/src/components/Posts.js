@@ -56,9 +56,9 @@ const mapStateToProps = (state) => ({
   posts: state.posts
 });
 
-const mapDispatchToProps = dispatch => ({
-  sortPosts: (sortBy, sortOrder) => dispatch(sortPosts(sortBy, sortOrder))
-});
+const mapDispatchToProps = {
+  sortPosts
+};
 
 export default withRouter(
   connect(
